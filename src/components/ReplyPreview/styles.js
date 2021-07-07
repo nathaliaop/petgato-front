@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 
-export const CommentPreview = styled.div`
+export const ReplyPreview = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 2rem;
   font-family: 'Montserrat',sans-serif;
 `;
 
-export const Comment = styled.div`
+export const Reply = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1rem;
@@ -22,9 +22,5 @@ export const Image = styled.img`
 
 export const Date = styled.label`
   color: gray
-`;
-
-export const Replies = styled.div`
-  margin-left: 5rem;
 `;
 

@@ -86,6 +86,8 @@ const VisualizacaoPost = () => {
         });
     }
     console.log(comments);
+
+
     return (
         <div>
             <Styled.Page>
@@ -104,7 +106,7 @@ const VisualizacaoPost = () => {
                 <Message value={message} onChange={setMessage}></Message>
                 <Button onClick={sendMessage}>Enviar</Button></div>: null}
                 <div>
-                {comments.map(comment => <CommentPreview user_name={comment.user.name} user_photo={comment.user.photo} comment={comment}/>)}
+                {comments.map(comment => <CommentPreview comentario={comment} />)}
                 </div>
             </Styled.Page>
             
