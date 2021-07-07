@@ -27,4 +27,3 @@ export const Date = styled.label`
 export const Replies = styled.div`
   margin-left: 5rem;
 `;
-
