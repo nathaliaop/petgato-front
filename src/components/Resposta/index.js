@@ -1,10 +1,10 @@
 import React from 'react';
 import * as Styled from './styles.js';
 
-const Resposta = ({ children, onChange=null, value='' }) => {
+const Resposta = ({ children, onChange=null, value='', placeholder }) => {
     return (
-        <Styled.Message 
-            placeholder="Diga oi :3"
+        <Styled.Message
+            placeholder={placeholder}
             value={value}
             onChange={e => onChange(e.target.value)}
         >

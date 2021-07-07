@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from "react";
 import * as Styled from './styles';
 import ReplyPreview from "../../components/ReplyPreview";
-import Message from '../../components/Resposta';
+import Button from "../../components/Button";
+import Message from '../../components/Message';
 import api from '../../services/api';
 
 const CommentPreview = ({ comentario }) => {
@@ -9,6 +10,11 @@ const CommentPreview = ({ comentario }) => {
   const user_id = localStorage.getItem('user_id');
   const [comment, setComment] = useState(comentario);
   const [message, setMessage] = useState('');
+  const [hidden, setHidden] = useState([]);
+  const handleHide = (id) => {
+    setMessage('');
+    hidden.includes(id) ? setHidden(hidden.filter(a => (a !== id))) : setHidden([...hidden,id]);
+  }
       //Conserta a exibição da data de criação da postagem
       const arrumaData = (date) => {
         let array = date.split('T')[0];
@@ -39,6 +45,7 @@ const CommentPreview = ({ comentario }) => {
           api.get(`/comments/${comment.id}`)
           .then((response) => {
             setComment(response.data);
+            setHidden(hidden.filter(a => (a !== comment.id)))
         })
         .catch(error => {
             console.error(error);
@@ -65,8 +72,13 @@ const CommentPreview = ({ comentario }) => {
           <h5>{comment.user.name}</h5>
           <Styled.Date>{arrumaData(comment.created_at)}</Styled.Date>
           <p>{comment.description}</p>
-          <Message value={message} onChange={setMessage}></Message>
-          <button onClick={sendReply}>reply</button>
+          <Button key={comment.id} onClick={() => handleHide(comment.id)}>Responder</Button>
+          {hidden.map(hidden => (comment.id ===  hidden) ?
+          <div>
+            <Message width="200%" placeholder="Diga oi :3" key={comment.id} value={message} onChange={setMessage}></Message>
+            <Button onClick={sendReply}>Enviar</Button>
+          </div>
+          : <></>)}
       </Styled.Comment>
       </Styled.CommentPreview>
       <Styled.Replies>

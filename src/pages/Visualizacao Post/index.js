@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import LeftArrow from '../../assets/Icon awesome-chevron-left.svg';
-import Message from '../../components/Comentario';
+import Message from '../../components/Message';
 import Button from '../../components/Button';
 import CommentPreview from "../../components/CommentPreview";
 import api from '../../services/api';
@@ -103,7 +103,7 @@ const VisualizacaoPost = () => {
                 {token ?
                 <div>
                 <Styled.Subtitle>Gostou? Deixe um comentário abaixo: </Styled.Subtitle>
-                <Message value={message} onChange={setMessage}></Message>
+                <Message placeholder="Digite uma mensagem legal UwU" value={message} onChange={setMessage}></Message>
                 <Button onClick={sendMessage}>Enviar</Button></div>: null}
                 <div>
                 {comments.map(comment => <CommentPreview comentario={comment} />)}

@@ -1,10 +1,11 @@
 import React from 'react';
 import * as Styled from './styles.js';
 
-const Comentario = ({ children, onChange=null, value='' }) => {
+const Message = ({ children, onChange=null, value='', placeholder, width }) => {
     return (
-        <Styled.Message 
-            placeholder="Deixe uma mensagem legal UwU"
+        <Styled.Message
+            style={{width: `${width}`}}
+            placeholder={placeholder}
             value={value}
             onChange={e => onChange(e.target.value)}
         >
@@ -13,4 +14,4 @@ const Comentario = ({ children, onChange=null, value='' }) => {
     );
 }
 
-export default Comentario;
+export default Message;
