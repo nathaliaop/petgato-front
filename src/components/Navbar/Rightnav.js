@@ -38,6 +38,7 @@ function Rightnav({ open, backoffice }) {
         <li><a href='/backofficePubli'>Publicações</a></li>
         <li><a href='/backofficeUsuario'>Usuários</a></li>
         <li><a href='/backofficeContato'>Mensagens</a></li>
+        <li><a href='/backofficeDenuncias'>Denúncias</a></li>
         {localStorage.getItem('token') && <li><a onClick={() => {localStorage.removeItem('token');
         window.location.reload(false)}}> Sair </a></li>}
     </Ul>
