@@ -35,19 +35,67 @@ const BackofficeReport = () => {
         toggleTrueFalse();
     }
 
+    const apagarDenuncia = (id,key) => {
+        api.delete(`reports/${id}`, {
+            headers:{
+                'Authorization': `${token}`,
+            }
+        })
+        .then(() => {
+            setKey(!key);
+            handleClose();
+        })
+        .catch(error => {
+            console.error(error);
+            alert('Ocorreu um erro! Tente novamente.');
+        });
+    }
+
+    const apagarComentario = (id,origin_type,origin_id,key) => {
+        let type
+        (origin_type == "Comment" ? type = "comments" : type = "replies")
+        api.delete(`${type}/${origin_id}`, {
+            headers:{
+                'Authorization': `${token}`,
+            }
+        })
+        .then(() => {
+            api.delete(`reports/${id}`, {
+                headers:{
+                    'Authorization': `${token}`,
+                }
+            })
+            .then(() => {
+                setKey(!key);
+                handleClose();
+            })
+            .catch(error => {
+                console.error(error);
+                alert('Ocorreu um erro! Tente novamente.');
+            });
+        })
+        .catch(error => {
+            console.error(error);
+            alert('Ocorreu um erro! Tente novamente.');
+        });
+    }
     //Conteúdo do Modal
     const ModalContent = () => {
         return (
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header>
-                    <Modal.Title>Mensagem: {modalInfo.name}</Modal.Title>
+                    <Modal.Title>Comentário de {modalInfo.user.name}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p><strong>Email: </strong>{modalInfo.email}</p>
-                    <p><strong>Mensagem: </strong></p>
-                    <p>{modalInfo.description}</p>
+                    <p>{modalInfo.origin.description}</p>
                 </Modal.Body>
-                <Modal.Footer>
+                <Modal.Footer style={{justifyContent: "space-between"}}>
+                    <Button variant = 'secondary' onClick={() => apagarDenuncia(modalInfo.id,key)} style={{backgroundColor: '#BA66A3', border:'none'}}>
+                        Ignorar Denúncia
+                    </Button>
+                    <Button variant = 'secondary' onClick={() => apagarComentario(modalInfo.id,modalInfo.reportable_type,modalInfo.reportable_id,key)} style={{backgroundColor: '#BA66A3', border:'none'}}>
+                        Apagar Comentário
+                    </Button>
                     <Button variant = 'secondary' onClick={handleClose} style={{backgroundColor: '#BA66A3', border:'none'}}>
                         Close
                     </Button>
@@ -58,15 +106,12 @@ const BackofficeReport = () => {
 
     //Colunas a serem usadas na tabela
     const columns = [{
-        dataField: 'name',
-        text: 'Remetente'
-      }, {
         text: '#',
         formatter: (rowContent, row) => {
             return (
-              <Styled.Overflow>
-                <p>{row.description}</p>
-              </Styled.Overflow>
+              <div>
+                <p>{row.id}</p>
+              </div>
             );
         }
       },{
@@ -81,19 +126,18 @@ const BackofficeReport = () => {
       },{
         text: 'Publicação',
         formatter: (rowContent, row) => {
+            console.log(row.origin.description)
             return (
-              <div>
-                <p>{arrumaData(row.created_at)}</p>
-              </div>
+                <Styled.Overflow dangerouslySetInnerHTML={{ __html: row.origin.description }}>
+                </Styled.Overflow>
             );
         }
       },{
         text: 'Autor',
         formatter: (rowContent, row) => {
             return (
-              <div>
-                <p>{arrumaData(row.created_at)}</p>
-              </div>
+                <Styled.Overflow dangerouslySetInnerHTML={{ __html: row.user.name }}>
+                </Styled.Overflow>
             );
         }
       },{
@@ -102,8 +146,6 @@ const BackofficeReport = () => {
             return (
               <Styled.Div>
                 <Button style={{backgroundColor: '#BA66A3', border:'none'}} onClick={() => openModal(row)}>Exibir</Button>
-                <Button style={{backgroundColor: '#BA66A3', border:'none'}} onClick={() => handleDelete(row.id,token,key)}>Ignorar denúncia</Button>
-                <Button style={{backgroundColor: '#BA66A3', border:'none'}} >Excluir comentário</Button>
               </Styled.Div>
             );
       }
