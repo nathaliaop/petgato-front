@@ -4,9 +4,9 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 
-import InputFile from "../../components/InputFile";
-import ButtonMain from "../../components/Button";
-import api from '../../services/api';
+import InputFile from "../../../components/InputFile";
+import ButtonMain from "../../../components/Button";
+import api from '../../../services/api';
 import {useHistory, useParams} from 'react-router-dom';
 
 

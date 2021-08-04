@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
 import * as Styled from './styles';
-import api from '../../services/api';
+import api from '../../../services/api';
 import {Modal,Button} from "react-bootstrap";
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';

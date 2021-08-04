@@ -5,21 +5,21 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Home from '../pages/Home';
 import AboutUs from '../pages/About Us';
-import ContactUs from '../pages/Contact';
+import ContactUs from '../pages/Contato';
 import CadastroPage from '../pages/LoginPage';
 import LoginPage from '../pages/CadastroPage';
 import EsqueciPage from '../pages/EsqueciPage';
-import CreatePubli from '../pages/CreatePubli';
-import VisualizacaoPost from '../pages/Visualizacao Post';
+import VisualizacaoPost from '../pages/VisualizacaoPost';
 import RecuperarPage from '../pages/RecuperarPage';
 import Profile from '../pages/Profile';
 import BackofficeEditarUsuario from '../pages/Backoffice/EditarPerfil'
 import EditarTag from '../pages/Backoffice/EditarTag'
-import BackofficePost from '../pages/Backoffice Post';
-import BackofficeUser from '../pages/Backoffice User';
-import BackofficeReport from '../pages/Backoffice Report';
-import BackofficeContact from '../pages/Backoffice Contact';
-import EditPublication from '../pages/EditPubli';
+import BackofficePost from '../pages/Backoffice/Postagem';
+import BackofficeUser from '../pages/Backoffice/Usuario';
+import BackofficeReport from '../pages/Backoffice/Denuncia';
+import BackofficeContact from '../pages/Backoffice/Contato';
+import CreatePubli from '../pages/Backoffice/CriarPubli';
+import EditPublication from '../pages/Backoffice/EditarPubli';
 
 const RouteNavbarAndFooter = ({ component: Component, ...props }) => {
     console.log(props)

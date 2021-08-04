@@ -5,10 +5,10 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 
-import InputText from "../../components/InputText";
-import InputFile from "../../components/InputFile";
-import ButtonMain from "../../components/Button";
-import api from '../../services/api';
+import InputText from "../../../components/InputText";
+import InputFile from "../../../components/InputFile";
+import ButtonMain from "../../../components/Button";
+import api from '../../../services/api';
 import {useHistory} from 'react-router-dom';
 
 const CreatePubli = () => {

@@ -5,6 +5,10 @@ export const Page = styled.div`
   flex-direction: column;
   padding: 3rem 10rem 5rem 10rem;
 `
+export const LikeDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+`
 
 export const Title = styled.h1`
   font-family: 'Montserrat',sans-serif;
@@ -21,10 +25,6 @@ export const Date = styled.label`
   font-style: italic;
   font-size: 20px;
   margin-bottom: 1rem;
-`
-
-export const BackButton = styled.div`
-
 `
 
 export const Back = styled.label`
